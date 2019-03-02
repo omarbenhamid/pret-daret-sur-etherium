@@ -12,8 +12,8 @@ contract Daret {
     event MoisPaye(address qui, uint8 mois);
     event TransfertCollecteMois(address beneficiaire, uint8 mois);
     
-    constructor(uint _mensualiteEther, uint _nbParticipants) public {
-        mensualite = _mensualiteEther * (1 ether);
+    constructor(uint _mensualite, uint _nbParticipants) public {
+        mensualite = _mensualite;
         nbParticipants = _nbParticipants;
     }
     
