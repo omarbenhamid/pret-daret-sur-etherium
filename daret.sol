@@ -12,13 +12,10 @@ contract Daret {
     event MoisPaye(address qui, uint8 mois);
     event TransfertCollecteMois(address beneficiaire, uint8 mois);
     
-    constructor(uint _mensualite, uint _nbParticipants) public {
-        mensualite = _mensualite;
+    constructor(uint _weiParMois, uint _nbParticipants) public {
+        mensualite = _weiParMois;
         nbParticipants = _nbParticipants;
     }
-    
-    
-    
     
     //Suivi du nombre de mois qu'a paye un participant
     mapping(address => uint8) public moisPayes;
@@ -33,7 +30,6 @@ contract Daret {
     //Si tous les mois sont payes daret s'arrete
     //retourn l'adresse du benefiicaire qui reçu ou address(0) si le paiement n'est pas possible
     function executerMoisCourrent() private {
-        if (moisCourrent >= participants.length) return;
         address tourActuel = address(0);
         
         //TODO: utiliser un compteur car si beacuoup de participants
@@ -41,7 +37,7 @@ contract Daret {
         for (uint8 c = 0; c < participants.length; c++){
             //Il faut que tout le monde aie paye
             if(moisPayes[participants[c]]<= moisCourrent) return;
-            if(c == moisCourrent) tourActuel = participants[c];
+            if(c == moisCourrent % nbParticipants) tourActuel = participants[c];
         }
         
         assert(tourActuel != address(0));
