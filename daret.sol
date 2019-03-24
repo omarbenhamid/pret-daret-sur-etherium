@@ -68,7 +68,9 @@ contract Daret {
     }
     
     function () public payable{
-        revert();
+        if(participants.length < nbParticipants) inscription();
+        else payerMois();
     }
     
 }
+
