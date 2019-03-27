@@ -4,7 +4,7 @@ pragma solidity 0.4.25;
 //Vote pour  pour demarrer le premier mois
 contract Daret {
     //Nombre d'ETH a payer par mois
-    uint mensualite;
+    uint public mensualite;
     uint8 public moisCourrent;
     uint public nbParticipants;
     
@@ -73,4 +73,3 @@ contract Daret {
     }
     
 }
-
